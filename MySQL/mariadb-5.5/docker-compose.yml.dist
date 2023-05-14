@@ -1,0 +1,26 @@
+version: '3.8'
+# https://docs.docker.com/compose/compose-file/compose-versioning/
+
+services:
+  global-mariadb5.5:
+    container_name: global-mariadb5.5
+    image: mariadb:5.5.64
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: password
+    volumes:
+      - C:\Users\usuario\Projects\Docker\MySQL\mariadb-5.5\data:/var/lib/mysql
+#      - /home/usuario/Projects/Docker/MySQL/mariadb-5.5/data:/var/lib/mysql
+      - .\shared_files:/root/shared_files
+#      - ./shared_files:/root/shared_files
+    networks:
+      - global-mariadb-network
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+
+networks:
+  global-mariadb-network:
+    external: true

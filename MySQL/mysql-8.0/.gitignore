@@ -1,0 +1,5 @@
+docker-compose.yml
+/data/*
+!/data/.gitkeep
+/shared_files/*
+!/data/.gitkeep

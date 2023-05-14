@@ -1,0 +1,25 @@
+version: '3.8'
+# https://docs.docker.com/compose/compose-file/compose-versioning/
+
+services:
+  boilerplate-be:
+    container_name: boilerplate-be
+    build:
+      context: ./docker/php8.2-apache
+#      context: ./docker/php7.4-apache
+      args:
+        UID: $U_ID
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/boilerplate
+#      - ../other_project/:/var/www/other_project
+#      - ../another_project/:/var/www/another_project
+#    depends_on:
+#      - global-mariadb5.5
+    networks:
+      - global-mysql-network
+
+networks:
+  global-mysql-network:
+    external: true
