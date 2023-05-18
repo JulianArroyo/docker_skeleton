@@ -17,7 +17,6 @@ help: ## Show this help message
 
 start: ## Start the containers
 	docker network create global-mysql-network || true
-	docker network create global-mariadb-network || true
 	docker network create global-rabbitmq-network || true
 	docker network create global-postgresql-network || true
 	cp -n docker-compose.yml.dist docker-compose.yml || true
@@ -34,7 +33,6 @@ restart: ## Restart the containers
 
 build: ## Rebuilds all the containers
 	docker network create global-mysql-network || true
-	docker network create global-mariadb-network || true
 	docker network create global-rabbitmq-network || true
 	docker network create global-postgresql-network || true
 	cp -n docker-compose.yml.dist docker-compose.yml || true
