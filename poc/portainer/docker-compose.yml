@@ -1,0 +1,26 @@
+version: '3'
+# https://www.youtube.com/watch?v=rYGkFtZeD8A
+# https://earthly.dev/blog/portainer-for-docker-container-management/
+# https://www.zonagadget.com/administrar-docker-con-portainer/
+# run with docker compose: docker compose up -d
+# stop with docker compose: docker compose stop
+# pass: LyJEgu8zR'?z9a}
+
+# https://docs.portainer.io/start/install-ce/server/docker/linux
+# https://docs.portainer.io/start/install-ce/server/docker/wsl
+# with docker run: docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v ./data:/data portainer/portainer-ce:latest
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+#    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./data:/data
+    ports:
+      - '9443:9443'
+      - '8000:8000'
